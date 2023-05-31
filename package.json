@@ -1,0 +1,21 @@
+{
+  "name": "catcares-api-crud",
+  "version": "1.0.0",
+  "description": "Project Capstone Bangkit 2023 : Cat Cares (CRUD)",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Namyra Diva Armabhara C115DSY1996",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "mongoose": "^7.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
