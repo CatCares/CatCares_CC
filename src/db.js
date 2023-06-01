@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
     try {
-        await mongoose.connect('mongodb://localhost:27017/nama_database', {
+        await mongoose.connect('mongodb+srv://atalie:1234@catcares.jkv04p8.mongodb.net/catcares', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
