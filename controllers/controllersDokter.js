@@ -1,25 +1,23 @@
 const Dokter = require('../models/dokter');
 
 // List Dokter
-const getAllDokter = (req, res) => {
-    Dokter.find({}, (err, dokter) => {
-        if (err) {
-            res.status(500).json({ error: err.message });
-        } else {
-            res.json(dokter);
-        }
-    });
+const getAllDokter = async (req, res) => {
+    try {
+        const dokter = await Dokter.find({});
+        res.json(dokter);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 };
   
 // Detail Dokter
-const getDokterById = (req, res) => {
-    Dokter.findById(req.params.id, (err, dokter) => {
-        if (err) {
-            res.status(500).json({ error: err.message });
-        } else {
-            res.json(dokter);
-        }
-    });
+const getDokterById = async (req, res) => {
+    try {
+        const dokter = await Dokter.findById(req.params.id);
+        res.json(dokter);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 };
   
 // Tambah dokter
