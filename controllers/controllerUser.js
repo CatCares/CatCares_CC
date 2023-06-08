@@ -80,6 +80,9 @@ const loginFirebase = async (req, res) => {
             }
         })
     } catch (error) {
+        if(!error.status) {
+            return res.status(500).json({error: "Internal server error"});
+        }
         return res.status(error.status).json({ error: error.message });
     }
 }
@@ -131,6 +134,9 @@ const loginUser = async (req, res) => {
         })
 
     } catch (error) {
+        if(!error.status) {
+            return res.status(500).json({error: "Internal server error"});
+        }
         return res.status(error.status).json({ error: error.message });
     }
 }
@@ -186,6 +192,9 @@ const registerUser = async (req, res) => {
         });
 
     } catch (error) {
+        if(!error.status) {
+            return res.status(500).json({error: "Internal server error"});
+        }
         return res.status(error.status).json({ error: error.message });
     }
 };
