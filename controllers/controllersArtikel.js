@@ -4,11 +4,11 @@ const Artikel = require('../models/artikel');
 const getAllArtikel = (req, res) => {
     Artikel.find({}, (err, artikel) => {
         if (err) {
-          res.status(500).json({ error: err.message });
+            res.status(500).json({ error: err.message });
         } else {
-          res.json(artikel);
+            res.json(artikel);
         }
-      });
+    });
 }
 
 // Detail artikel

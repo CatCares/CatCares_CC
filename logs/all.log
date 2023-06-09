@@ -1,0 +1,44 @@
+2023-06-08 21:21:57:2157 [35mhttp[39m: [35mPOST /prediction/ringworm 404 159 - 12.342 ms[39m
+[35m[39m
+2023-06-08 21:22:33:2233 [35mhttp[39m: [35mPOST /prediction/ringworm 404 159 - 3.184 ms[39m
+[35m[39m
+2023-06-08 21:24:27:2427 [35mhttp[39m: [35mPOST /prediction/ringworm - - - - ms[39m
+[35m[39m
+2023-06-08 22:04:36:436 [35mhttp[39m: [35mPOST /prediction/ringworm 500 33 - 11.571 ms[39m
+[35m[39m
+2023-06-08 22:05:53:553 [35mhttp[39m: [35mPOST /prediction/ringworm 500 33 - 12.322 ms[39m
+[35m[39m
+2023-06-08 22:07:43:743 [35mhttp[39m: [35mPOST /prediction/ringworm 500 33 - 11.691 ms[39m
+[35m[39m
+2023-06-08 22:08:45:845 [35mhttp[39m: [35mPOST /prediction/ringworm 500 33 - 19.220 ms[39m
+[35m[39m
+2023-06-08 22:10:19:1019 [35mhttp[39m: [35mPOST /prediction/ringworm 500 33 - 16.762 ms[39m
+[35m[39m
+2023-06-08 22:12:07:127 [35mhttp[39m: [35mPOST /prediction/ringworm 500 33 - 18.535 ms[39m
+[35m[39m
+2023-06-08 22:16:11:1611 [35mhttp[39m: [35mPOST /prediction/ringworm 500 33 - 21.265 ms[39m
+[35m[39m
+2023-06-08 22:17:27:1727 [35mhttp[39m: [35mPOST /prediction/ringworm 500 33 - 23.163 ms[39m
+[35m[39m
+2023-06-08 22:18:56:1856 [35mhttp[39m: [35mPOST /prediction/ringworm 500 33 - 35.639 ms[39m
+[35m[39m
+2023-06-08 22:30:22:3022 [35mhttp[39m: [35mPOST /prediction/ringworm 500 33 - 11958.197 ms[39m
+[35m[39m
+2023-06-08 22:31:17:3117 [35mhttp[39m: [35mPOST /prediction/ringworm 200 868 - 8086.049 ms[39m
+[35m[39m
+2023-06-08 22:31:47:3147 [35mhttp[39m: [35mPOST /prediction/ringworm 200 864 - 7982.270 ms[39m
+[35m[39m
+2023-06-08 23:23:01:231 [35mhttp[39m: [35mPOST /prediction/ringworm 200 864 - 2103.904 ms[39m
+[35m[39m
+2023-06-09 17:02:24:224 [35mhttp[39m: [35mPOST /prediction/ringworm 500 33 - 13.112 ms[39m
+[35m[39m
+2023-06-09 17:04:42:442 [35mhttp[39m: [35mPOST /prediction/ringworm 500 33 - 10.598 ms[39m
+[35m[39m
+2023-06-09 17:08:45:845 [35mhttp[39m: [35mPOST /prediction/ringworm 500 33 - 7.373 ms[39m
+[35m[39m
+2023-06-09 17:09:04:94 [35mhttp[39m: [35mPOST /prediction/ringworm 200 868 - 8754.178 ms[39m
+[35m[39m
+2023-06-09 17:09:26:926 [35mhttp[39m: [35mPOST /prediction/ringworm 200 868 - 8122.548 ms[39m
+[35m[39m
+2023-06-09 17:09:43:943 [35mhttp[39m: [35mPOST /prediction/ringworm 200 864 - 7844.108 ms[39m
+[35m[39m
