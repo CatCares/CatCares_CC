@@ -28,3 +28,17 @@
 [35m[39m
 2023-06-08 22:31:47:3147 [35mhttp[39m: [35mPOST /prediction/ringworm 200 864 - 7982.270 ms[39m
 [35m[39m
+2023-06-08 23:23:01:231 [35mhttp[39m: [35mPOST /prediction/ringworm 200 864 - 2103.904 ms[39m
+[35m[39m
+2023-06-09 17:02:24:224 [35mhttp[39m: [35mPOST /prediction/ringworm 500 33 - 13.112 ms[39m
+[35m[39m
+2023-06-09 17:04:42:442 [35mhttp[39m: [35mPOST /prediction/ringworm 500 33 - 10.598 ms[39m
+[35m[39m
+2023-06-09 17:08:45:845 [35mhttp[39m: [35mPOST /prediction/ringworm 500 33 - 7.373 ms[39m
+[35m[39m
+2023-06-09 17:09:04:94 [35mhttp[39m: [35mPOST /prediction/ringworm 200 868 - 8754.178 ms[39m
+[35m[39m
+2023-06-09 17:09:26:926 [35mhttp[39m: [35mPOST /prediction/ringworm 200 868 - 8122.548 ms[39m
+[35m[39m
+2023-06-09 17:09:43:943 [35mhttp[39m: [35mPOST /prediction/ringworm 200 864 - 7844.108 ms[39m
+[35m[39m
