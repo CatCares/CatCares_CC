@@ -1,15 +1,14 @@
 const Artikel = require('../models/artikel');
 
 // List artikel
-const getAllArtikel = (req, res) => {
-    Artikel.find({}, (err, artikel) => {
-        if (err) {
-            res.status(500).json({ error: err.message });
-        } else {
-            res.json(artikel);
-        }
-    });
-}
+const getAllArtikel = async (req, res) => {
+    try {
+      const artikel = await Artikel.find({});
+      res.json(artikel);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  };  
 
 // Detail artikel
 const getArtikelById = (req, res) => {
@@ -24,8 +23,8 @@ const getArtikelById = (req, res) => {
 
 // Tambah artikel
 const createArtikel = (req, res) => {
-    const { judul, konten, penulis } = req.body;
-    const artikel = new Artikel({ judul, konten, penulis });
+    const { link } = req.body;
+    const artikel = new Artikel({ link });
     artikel.save((err) => {
         if (err) {
             res.status(500).json({ error: err.message });

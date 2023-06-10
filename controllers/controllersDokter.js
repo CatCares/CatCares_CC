@@ -21,32 +21,32 @@ const getDokterById = async (req, res) => {
 };
   
 // Tambah dokter
-const createDokter = (req, res) => {
+const createDokter = async (req, res) => {
+  try {
     const { nama, umur, telepon, email, alamat } = req.body;
     const dokter = new Dokter({ nama, umur, telepon, email, alamat });
-    dokter.save((err) => {
-        if (err) {
-            res.status(500).json({ error: err.message });
-        } else {
-            res.json(dokter);
-        }
-    });
+    await dokter.save();
+    res.json(dokter);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
   
 // Update Dokter
-const updateDokter = (req, res) => {
-    Dokter.findByIdAndUpdate(
-        req.params.id,
-        req.body,
-        { new: true },
-        (err, dokter) => {
-            if (err) {
-                res.status(500).json({ error: err.message });
-            } else {
-                res.json(dokter);
-            }
-        }
+const updateDokter = async (req, res) => {
+  try {
+    const updatedDokter = await Dokter.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
     );
+    if (!updatedDokter) {
+      return res.status(404).json({ message: 'Dokter tidak ditemukan' });
+    }
+    res.json(updatedDokter);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
   
 // Delete dokter

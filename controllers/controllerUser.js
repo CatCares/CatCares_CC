@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const User = require('../models/user');
 const { validateLogin, validateLoginFirebase } = require('./validation/validation');
 const { validateUser } = require("./validation/validation");
@@ -201,41 +202,51 @@ const registerUser = async (req, res) => {
 
 // Profil User
 const getUserById = (req, res) => {
-    User.findById(req.params.id, (err, user) => {
-        if (err) {
-            res.status(500).json({ error: err.message });
-        } else {
-            res.json(user);
+    const userId = req.params.id;
+  
+    // Memeriksa validitas ObjectId
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      return res.status(400).json({ error: 'Invalid user ID' });
+    }
+  
+    User.findById(userId)
+      .then((user) => {
+        if (!user) {
+          return res.status(404).json({ error: 'User not found' });
         }
-    });
-};
+        res.json(user);
+      })
+      .catch((error) => {
+        res.status(500).json({ error: error.message });
+      });
+  }; 
 
 // Update Profil User
-const updateUser =(req, res) => {
-    User.findByIdAndUpdate(
-        req.params.id,
-        req.body,
-        { new: true },
-        (err, user) => {
-            if (err) {
-                res.status(500).json({ error: err.message });
-            } else {
-                res.json(user);
-            }
+const updateUser = (req, res) => {
+    User.findByIdAndUpdate(req.params.id, req.body, { new: true })
+      .then((user) => {
+        if (!user) {
+          return res.status(404).json({ error: 'User not found' });
         }
-    );
-};
+        res.json(user);
+      })
+      .catch((error) => {
+        res.status(500).json({ error: error.message });
+      });
+  };    
 
 // Delete User
-const deleteUser = (req, res) => {
-    Kucing.findByIdAndRemove(req.params.id, (err) => {
-        if (err) {
-            res.status(500).json({ error: err.message });
-        } else {
-            res.json({ message: 'User berhasil dihapus'});
-        }
-    });
-};
+const deleteUser = async (req, res) => {
+    try {
+      const deletedUser = await User.findByIdAndRemove(req.params.id);
+      if (!deletedUser) {
+        return res.status(404).json({ message: 'Pengguna tidak ditemukan' });
+      }
+      res.json({ message: 'Pengguna berhasil dihapus' });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+};   
 
 module.exports = {
     getUserById,
