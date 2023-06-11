@@ -30,7 +30,7 @@ router.post("/dokter", upload.single("foto"), async (req, res) => {
         formData.append("foto", blobData, file.originalname);
 
         const response = await axios.post(
-            "https://catcares-leqtuvqrmq-et.a.run.app/predict",
+            "https://catcares-leqtuvqrmq-et.a.run.app/dokter",
             formData,
             {
                 headers: {
