@@ -1,5 +1,4 @@
 const Kucing = require('../models/kucing');
-const FormData = require('form-data');
 
 // List Kucing
 const getAllKucing = (req, res) => {
@@ -28,30 +27,15 @@ const getKucingById = (req, res) => {
   };    
 
 // Tambah Kucing
-const createKucing = async (req, res) => {
+async function createKucing(req, res) {
+  const { foto, nama, ras, kelamin, umur, berat, warna } = req.body;
   try {
-    const { nama, umur, berat, ras, kelamin, warna } = req.body;
-    const foto = req.file ? req.file.path : '';
-
-    const kucing = new Kucing({ nama, umur, berat, ras, kelamin, warna, foto });
-    await kucing.save();
-
-    // Membuat objek FormData
-    const formData = new FormData();
-    formData.append('nama', nama);
-    formData.append('umur', umur);
-    formData.append('berat', berat);
-    formData.append('ras', ras);
-    formData.append('kelamin', kelamin);
-    formData.append('warna', warna);
-    formData.append('foto', fs.createReadStream(foto)); // Mengunggah file foto ke FormData
-
-    res.set('Content-Type', 'multipart/form-data'); // Mengatur header Content-Type menjadi multipart/form-data
-    res.status(201).send(formData); // Mengirimkan FormData sebagai respons
+    const kucing = await Kucing.create({ foto, nama, ras, kelamin, umur, berat, warna });
+    res.status(201).json(kucing);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'Internal server error' });
   }
-};
+}
 
 // Update Kucing
 const updateKucing = async (req, res) => {

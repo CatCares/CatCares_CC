@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const FormData = require('form-data');
 const User = require('../models/user');
 const { validateLogin, validateLoginFirebase } = require('./validation/validation');
 const { validateUser } = require("./validation/validation");
@@ -222,18 +223,67 @@ const getUserById = (req, res) => {
   }; 
 
 // Update Profil User
-const updateUser = (req, res) => {
-    User.findByIdAndUpdate(req.params.id, req.body, { new: true })
-      .then((user) => {
-        if (!user) {
-          return res.status(404).json({ error: 'User not found' });
+const updateUser = async (req, res) => {
+    const userId = req.params.id;
+  
+    // Memeriksa validitas ObjectId
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      return res.status(400).json({ error: 'Invalid user ID' });
+    }
+  
+    try {
+      const { firstName, lastName, alamat, noHp } = req.body;
+      const file = req.file;
+  
+      const formData = new FormData();
+  
+      formData.append('firstName', firstName);
+      formData.append('lastName', lastName);
+      formData.append('alamat', alamat);
+      formData.append('noHp', noHp);
+  
+      if (file) {
+        formData.append('foto', file.buffer, file.originalname);
+      }
+  
+      const response = await axios.put(
+        `https://catcares-leqtuvqrmq-et.a.run.app/user/${userId}`,
+        formData,
+        {
+          headers: {
+            'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
+          },
         }
-        res.json(user);
-      })
-      .catch((error) => {
-        res.status(500).json({ error: error.message });
-      });
-  };    
+      );
+  
+      if (response.status !== 200) {
+        throw new Error('Failed to update user');
+      }
+  
+      const updatedUser = response.data;
+  
+      return res.status(200).json(updatedUser);
+    } catch (error) {
+      console.log(error);
+      if (!error.response) {
+        return res.status(500).json({ error: 'Internal server error' });
+      }
+      return res.status(error.response.status).json({ error: error.message });
+    }
+  };
+  
+
+// const updateUser = async (req, res) => {
+//     try {
+//         const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
+//         if (!user) {
+//           return res.status(404).send('User not found');
+//         }
+//         res.send(user);
+//     } catch (err) {
+//         res.status(500).send(err);
+//     }
+// };    
 
 // Delete User
 const deleteUser = async (req, res) => {

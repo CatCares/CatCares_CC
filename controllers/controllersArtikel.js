@@ -11,28 +11,31 @@ const getAllArtikel = async (req, res) => {
   };  
 
 // Detail artikel
-const getArtikelById = (req, res) => {
-    Artikel.findById(req.params.id, (err, artikel) => {
-        if (err) {
-            res.status(500).json({ error: err.message });
-        } else {
-            res.json(artikel);
+function getArtikelById(req, res) {
+    const { id } = req.params;
+    Artikel.findById(id)
+      .then(artikel => {
+        if (!artikel) {
+          return res.status(404).json({ error: 'Artikel not found' });
         }
-    });
-};
+        res.json(artikel);
+      })
+      .catch(error => {
+        res.status(500).json({ error: 'Internal server error' });
+      });
+  }     
 
 // Tambah artikel
-const createArtikel = (req, res) => {
-    const { link } = req.body;
-    const artikel = new Artikel({ link });
-    artikel.save((err) => {
-        if (err) {
-            res.status(500).json({ error: err.message });
-        } else {
-            res.json(artikel);
-        }
-    });
-};
+const createArtikel = async (req, res) => {
+    const { judul, konten, link } = req.body;
+    const artikel = new Artikel({ judul, konten, link });
+    try {
+      await artikel.save();
+      res.json(artikel);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+}; 
 
 // Update artikel
 const updateArtikel = (req, res) => {
