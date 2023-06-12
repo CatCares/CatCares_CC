@@ -47,7 +47,6 @@ const updateArtikel = async (req, res) => {
   }
 };
 
-
 // Delete artikel
 const deleteArtikel = async (req, res) => {
   try {

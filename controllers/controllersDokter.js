@@ -1,6 +1,9 @@
-const FormData = require('form-data');
-const axios = require('axios');
+// const FormData = require('form-data');
 const Dokter = require('../models/dokter');
+const { Storage } = require('@google-cloud/storage');
+const storage = new Storage({
+  keyFilename: '../credentials.json',
+});
 
 // List Dokter
 const getAllDokter = async (req, res) => {
@@ -25,50 +28,95 @@ const getDokterById = async (req, res) => {
 // Tambah dokter
 const createDokter = async (req, res) => {
   try {
-    const { nama, umur, telepon, email, alamat } = req.body;
+    const bucketName = 'cat-cares';
 
-    // Access the uploaded image file from the 'foto' field
+    const { nama, telepon, email, alamat } = req.body;
     const foto = req.file;
 
-    // Create a new instance of FormData
-    const formData = new FormData();
-    formData.append('nama', nama);
-    formData.append('umur', umur);
-    formData.append('telepon', telepon);
-    formData.append('email', email);
-    formData.append('alamat', alamat);
-    formData.append('foto', foto.buffer, foto.originalname);
+    const originalFileName = foto.originalname;
+    const originalFileExtension = originalFileName.split('.').pop();
+    const fileName = `${Date.now()}.${originalFileExtension}`;
 
-    // Make a request to the server with the FormData
-    const response = await fetch('/', {
-      method: 'POST',
-      body: formData,
-      headers: {
-          "Content-Type": "multipart/form-data"
-      }
+    // Upload the photo to Google Cloud Storage
+    const bucket = storage.bucket(bucketName);
+    const file = bucket.file(fileName);
+    const stream = file.createWriteStream({
+      resumable: false,
+      gzip: true,
+      metadata: {
+      contentType: foto.mimetype,
+      },
+    });
+    stream.end(foto.buffer);
+
+    // Save the public URL of the photo in MongoDB
+    const publicUrl = `https://storage.googleapis.com/${bucketName}/${fileName}`;
+    const dokter = new Dokter({
+      nama,
+      telepon,
+      email,
+      alamat,
+      foto: publicUrl,
     });
 
-    // Parse the response as JSON
-    const dokter = await response.json();
+    await dokter.save();
 
     res.json(dokter);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
+
+
   
 // Update Dokter
 const updateDokter = async (req, res) => {
   try {
-    const updatedDokter = await Dokter.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      { new: true }
-    );
-    if (!updatedDokter) {
-      return res.status(404).json({ message: 'Dokter tidak ditemukan' });
+    const bucketName = 'cat-cares';
+
+    const { nama, telepon, email, alamat } = req.body;
+    const foto = req.file;
+
+    // Jika ada foto baru di-upload
+    if (foto) {
+      const originalFileName = foto.originalname;
+      const originalFileExtension = originalFileName.split('.').pop();
+      const fileName = `${Date.now()}.${originalFileExtension}`;
+
+      // Upload foto baru ke Google Cloud Storage
+      const bucket = storage.bucket(bucketName);
+      const file = bucket.file(fileName);
+      const stream = file.createWriteStream({
+        resumable: false,
+        gzip: true,
+        metadata: {
+          contentType: foto.mimetype,
+        },
+      });
+      stream.end(foto.buffer);
+
+      // Simpan URL publik foto baru di MongoDB
+      const publicUrl = `https://storage.googleapis.com/${bucketName}/${fileName}`;
+
+      // Update dokter dengan foto baru
+      await Dokter.findByIdAndUpdate(req.params.id, {
+        nama,
+        telepon,
+        email,
+        alamat,
+        foto: publicUrl,
+      });
+    } else {
+      // Update dokter tanpa mengubah foto
+      await Dokter.findByIdAndUpdate(req.params.id, {
+        nama,
+        telepon,
+        email,
+        alamat,
+      });
     }
-    res.json(updatedDokter);
+
+    res.json({ message: 'Dokter berhasil diperbarui' });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

@@ -8,7 +8,7 @@ const kucingSchema = new mongoose.Schema(
     ras: { type: String, required: true },
     kelamin: { type: String, required: true },
     warna: { type: String, required: true },
-    foto: { type: String },
+    foto: { type: String, required: true },
   },
   {
     timestamps: true,
