@@ -38,30 +38,24 @@ const createArtikel = async (req, res) => {
 }; 
 
 // Update artikel
-const updateArtikel = (req, res) => {
-    Artikel.findByIdAndUpdate(
-        req.params.id,
-        req.body,
-        { new: true },
-        (err, artikel) => {
-            if (err) {
-                res.status(500).json({ error: err.message });
-            } else {
-                res.json(artikel);
-            }
-        }
-    );
+const updateArtikel = async (req, res) => {
+  try {
+      const artikel = await Artikel.findByIdAndUpdate(req.params.id, req.body, { new: true });
+      res.json(artikel);
+  } catch (err) {
+      res.status(500).json({ error: err.message });
+  }
 };
 
+
 // Delete artikel
-const deleteArtikel = (req, res) => {
-    Artikel.findByIdAndRemove(req.params.id, (err) => {
-        if (err) {
-          res.status(500).json({ error: err.message });
-        } else {
-          res.json({ message: 'Artikel berhasil dihapus' });
-        }
-    });
+const deleteArtikel = async (req, res) => {
+  try {
+      await Artikel.findByIdAndRemove(req.params.id);
+      res.json({ message: 'Artikel berhasil dihapus' });
+  } catch (err) {
+      res.status(500).json({ error: err.message });
+  }
 };
 
 module.exports = {
