@@ -1,3 +1,5 @@
+const FormData = require('form-data');
+const axios = require('axios');
 const Dokter = require('../models/dokter');
 
 // List Dokter
@@ -24,8 +26,31 @@ const getDokterById = async (req, res) => {
 const createDokter = async (req, res) => {
   try {
     const { nama, umur, telepon, email, alamat } = req.body;
-    const dokter = new Dokter({ nama, umur, telepon, email, alamat });
-    await dokter.save();
+
+    // Access the uploaded image file from the 'foto' field
+    const foto = req.file;
+
+    // Create a new instance of FormData
+    const formData = new FormData();
+    formData.append('nama', nama);
+    formData.append('umur', umur);
+    formData.append('telepon', telepon);
+    formData.append('email', email);
+    formData.append('alamat', alamat);
+    formData.append('foto', foto.buffer, foto.originalname);
+
+    // Make a request to the server with the FormData
+    const response = await fetch('/', {
+      method: 'POST',
+      body: formData,
+      headers: {
+          "Content-Type": "multipart/form-data"
+      }
+    });
+
+    // Parse the response as JSON
+    const dokter = await response.json();
+
     res.json(dokter);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -50,14 +75,16 @@ const updateDokter = async (req, res) => {
 };
   
 // Delete dokter
-const deleteDokter = (req, res) => {
-    Dokter.findByIdAndRemove(req.params.id, (err) => {
-        if (err) {
-            res.status(500).json({ error: err.message });
-        } else {
-            res.json({ message: 'Dokter berhasil dihapus' });
-        }
-    });
+const deleteDokter = async (req, res) => {
+  try {
+    const dokter = await Dokter.findOneAndDelete({ _id: req.params.id });
+    if (!dokter) {
+      return res.status(404).json({ message: 'Dokter not found' });
+    }
+    res.json({ message: 'Dokter berhasil dihapus' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
   
   module.exports = {
