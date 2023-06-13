@@ -18,6 +18,7 @@ const uploadFile = async (file) => {
             }
         })
         .catch((err) => {
+            console.log(err)
             return {
                 error: true,
                 detail: err,

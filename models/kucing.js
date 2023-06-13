@@ -9,6 +9,7 @@ const kucingSchema = new mongoose.Schema(
     kelamin: { type: String, required: true },
     warna: { type: String, required: true },
     foto: { type: String, required: true },
+    userId: {type: mongoose.Types.ObjectId, required: true, ref: "User"}
   },
   {
     timestamps: true,

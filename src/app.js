@@ -10,6 +10,7 @@ const routesDokter = require('../routes/routesDokter');
 const routesArtikel = require('../routes/routesArtikel');
 const routesAuth = require('../routes/routesAuth');
 const routesPrediction = require('../routes/routesPrediction');
+const routesCheckup = require('../routes/routesCheckUp');
 
 const Logger = require('../utils/logger')
 
@@ -48,6 +49,7 @@ app.use('/dokter', routesDokter);
 app.use('/artikel', routesArtikel);
 app.use('/auth', routesAuth);
 app.use('/prediction', routesPrediction);
+app.use('/checkup', routesCheckup);
 
 const PORT = parseInt(process.env.PORT) || 8080;
 

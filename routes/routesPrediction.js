@@ -14,8 +14,6 @@ router.post("/ringworm", upload.single("image"), async (req, res) => {
     try {
         const file = req.file;
 
-        console.log(file);
-
         const blobData = new Blob([file.buffer], {type: file.mimetype});
 
         const formData = new FormData();

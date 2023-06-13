@@ -7,6 +7,8 @@ const dokterSchema = new mongoose.Schema(
     email: { type: String, required: true },
     alamat: { type: String, required: true },
     foto: { type: String, required: true },
+    tipe: { type: String, required: true },
+    category: { type: String, required: true }
   },
   {
     timestamps: true,
