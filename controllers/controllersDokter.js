@@ -19,6 +19,7 @@ const getAllDokter = async (req, res) => {
         const docPhoto = await getFile(doc.foto);
 
         return {
+          dokterId: doc._id,
           nama: doc.nama,
           alamat: doc.alamat,
           email: doc.email,
