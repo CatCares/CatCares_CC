@@ -11,7 +11,7 @@ const multerStorage = multer.memoryStorage();
 const upload = multer({storage: multerStorage})
 
 router.get('/list-artikel', authMiddleware, controllersArtikel.getAllArtikel);
-router.get('/detail-artikel/:id', authMiddleware, controllersArtikel.getArtikelById);
+router.get('/detail-artikel/:artikelId', authMiddleware, controllersArtikel.getArtikelById);
 router.post('/add-artikel', [authMiddleware, upload.single('foto')], controllersArtikel.createArtikel);
 
 module.exports = router;

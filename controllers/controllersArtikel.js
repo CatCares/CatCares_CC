@@ -9,28 +9,71 @@ const getFile = require("../utils/getFile");
 
 // List Artikel
 const getAllArtikel = async (req, res) => {
-    try {
-      const artikel = await Artikel.find({});
-      res.json(artikel);
-    } catch (error) {
-      res.status(500).json({ error: error.message });
+  try {
+    const artikel = await Artikel.find({});
+
+    const data = await Promise.all(
+      artikel.map(async (art) => {
+        const artPhoto = await getFile(art.foto);
+
+        return {
+          artikelId: art._id,
+          judul: art.judul,
+          konten: art.konten,
+          link: art.link,
+          foto: artPhoto,
+          createdAt: art.createdAt,
+          updatedAt: art.updatedAt,
+        };
+      })
+    );
+
+    return res.status(200).json({
+      data,
+      message: "Get list artikel success",
+    });
+  } catch (err) {
+    if (!error.status) {
+      return res.status(500).json({ error: "Internal server error" });
     }
-  };  
+    return res.status(error.status).json({ error: error.message });
+  }
+};
 
 // Detail artikel
-function getArtikelById(req, res) {
-    const { id } = req.params;
-    Artikel.findById(id)
-      .then(artikel => {
-        if (!artikel) {
-          return res.status(404).json({ error: 'Artikel not found' });
-        }
-        res.json(artikel);
-      })
-      .catch(error => {
-        res.status(500).json({ error: 'Internal server error' });
-      });
-}   
+const getArtikelById = async (req, res) => {
+  try {
+    const artikel = await Artikel.findById(req.params.artikelId);
+
+    if (!artikel) {
+      throw {
+        status: 404,
+        message: "Artikel tidak ditemukan",
+      };
+    }
+
+    const artPhoto = await getFile(artikel.foto);
+
+    const data = {
+      judul: artikel.judul,
+      konten: artikel.konten,
+      link: artikel.link,
+      foto: artPhoto,
+      createdAt: artikel.createdAt,
+      updatedAt: artikel.updatedAt,
+    };
+
+    return res.status(200).json({
+      data,
+      message: "detail artikel success",
+    });
+  } catch (err) {
+    if (!err.status) {
+      return res.status(500).json({ error: "Internal server error" });
+    }
+    return res.status(err.status).json({ error: err.message });
+  }
+};
 
 // Tambah artikel
 const createArtikel = async (req, res) => {

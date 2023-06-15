@@ -1010,3 +1010,43 @@
 [35m[39m
 2023-06-15 16:03:28:328 [35mhttp[39m: [35mGET /checkup/detail-checkup/648ad378bad57aaa80562366 200 3323 - 121.856 ms[39m
 [35m[39m
+2023-06-16 05:57:57:5757 [35mhttp[39m: [35mGET /artikel/list-artikel 200 4775 - 647.552 ms[39m
+[35m[39m
+2023-06-16 05:58:15:5815 [35mhttp[39m: [35mGET /dokter/list-dokter 200 6498 - 71.730 ms[39m
+[35m[39m
+2023-06-16 05:59:52:5952 [35mhttp[39m: [35mGET /dokter/detail-dokter/648aca33dc5021dfef6f0526 200 1085 - 444.793 ms[39m
+[35m[39m
+2023-06-16 06:00:04:04 [35mhttp[39m: [35mGET /artikel/detail-artikel/648ad000efe5689789bf7c9d 200 365 - 31.736 ms[39m
+[35m[39m
+2023-06-16 06:03:08:38 [35mhttp[39m: [35mGET /dokter/detail-dokter/648aca33dc5021dfef6f0526 200 1085 - 116.192 ms[39m
+[35m[39m
+2023-06-16 06:03:22:322 [35mhttp[39m: [35mGET /artikel/detail-artikel/648ad113d57a9871fecc429a 404 35 - 92.760 ms[39m
+[35m[39m
+2023-06-16 06:03:27:327 [35mhttp[39m: [35mGET /artikel/list-artikel 200 4775 - 77.133 ms[39m
+[35m[39m
+2023-06-16 06:03:37:337 [35mhttp[39m: [35mGET /artikel/detail-artikel/648ad113d57a9871fecc429a 404 35 - 64.151 ms[39m
+[35m[39m
+2023-06-16 06:03:52:352 [35mhttp[39m: [35mGET /artikel/detail-artikel/648ad7227aeaa4155a2e768c 404 35 - 68.830 ms[39m
+[35m[39m
+2023-06-16 06:04:01:41 [35mhttp[39m: [35mGET /artikel/detail-artikel/648ad000efe5689789bf7c9d 404 35 - 89.136 ms[39m
+[35m[39m
+2023-06-16 06:04:58:458 [35mhttp[39m: [35mGET /artikel/detail-artikel/648ad000efe5689789bf7c9d 404 35 - 69.190 ms[39m
+[35m[39m
+2023-06-16 06:08:02:82 [35mhttp[39m: [35mGET /dokter/list-dokter 200 6498 - 155.310 ms[39m
+[35m[39m
+2023-06-16 06:08:10:810 [35mhttp[39m: [35mGET /dokter/detail-dokter/648ac980dc5021dfef6f051c 200 1077 - 81.108 ms[39m
+[35m[39m
+2023-06-16 06:08:13:813 [35mhttp[39m: [35mGET /artikel/list-artikel 200 4775 - 93.835 ms[39m
+[35m[39m
+2023-06-16 06:08:22:822 [35mhttp[39m: [35mGET /artikel/detail-artikel/648ad113d57a9871fecc429a 404 35 - 68.017 ms[39m
+[35m[39m
+2023-06-16 06:11:57:1157 [35mhttp[39m: [35mGET /artikel/detail-artikel/648ad113d57a9871fecc429a 404 35 - 64.098 ms[39m
+[35m[39m
+2023-06-16 06:14:51:1451 [35mhttp[39m: [35mGET /artikel/list-artikel 200 4775 - 125.615 ms[39m
+[35m[39m
+2023-06-16 06:14:58:1458 [35mhttp[39m: [35mGET /artikel/detail-artikel/648ad000efe5689789bf7c9d 200 1173 - 58.686 ms[39m
+[35m[39m
+2023-06-16 06:15:17:1517 [35mhttp[39m: [35mGET /checkup/list-checkup 200 3325 - 118.105 ms[39m
+[35m[39m
+2023-06-16 06:15:42:1542 [35mhttp[39m: [35mGET /checkup/detail-checkup/648ad378bad57aaa80562366 200 3323 - 129.441 ms[39m
+[35m[39m
