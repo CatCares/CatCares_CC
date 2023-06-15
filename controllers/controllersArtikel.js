@@ -1,6 +1,13 @@
 const Artikel = require('../models/artikel');
+const { Storage } = require("@google-cloud/storage");
+const storage = new Storage({
+  keyFilename: "../credentials.json",
+});
 
-// List artikel
+const uploadFile = require("../utils/fileUploader");
+const getFile = require("../utils/getFile");
+
+// List Artikel
 const getAllArtikel = async (req, res) => {
     try {
       const artikel = await Artikel.find({});
@@ -23,19 +30,49 @@ function getArtikelById(req, res) {
       .catch(error => {
         res.status(500).json({ error: 'Internal server error' });
       });
-  }     
+}   
 
 // Tambah artikel
 const createArtikel = async (req, res) => {
+  try {
     const { judul, konten, link } = req.body;
-    const artikel = new Artikel({ judul, konten, link });
-    try {
-      await artikel.save();
-      res.json(artikel);
-    } catch (err) {
-      res.status(500).json({ error: err.message });
+    const file = req.file;
+
+    if (!file) {
+      throw {
+        status: 400,
+        message: "Gambar artikel tidak boleh kosong",
+      };
     }
-}; 
+    
+    const fileUploaded = await uploadFile(file);
+    const newArtikel = await Artikel.create({
+      judul,
+      konten,
+      link,
+      foto: fileUploaded.file,
+    });
+
+    if (!newArtikel) {
+      throw {
+        status: 500,
+        message: "Internal server error",
+      };
+    }
+
+    return res.status(201).json({
+      data: {
+        artikelId: newArtikel._id,
+      },
+      message: "Artikel berhasil dibuat",
+    });
+  } catch (error) {
+    if (!error.status) {
+      return res.status(500).json({ error: "Internal server error" });
+    }
+    return res.status(error.status).json({ error: error.message });
+  }
+};
 
 // Update artikel
 const updateArtikel = async (req, res) => {

@@ -926,3 +926,87 @@
 [35m[39m
 2023-06-13 20:23:40:2340 [35mhttp[39m: [35mPOST /prediction/ringworm 200 868 - 1594.131 ms[39m
 [35m[39m
+2023-06-15 14:53:32:5332 [35mhttp[39m: [35mPOST /auth/register 201 56 - 279.789 ms[39m
+[35m[39m
+2023-06-15 14:53:46:5346 [35mhttp[39m: [35mPOST /auth/login 200 239 - 219.033 ms[39m
+[35m[39m
+2023-06-15 14:54:59:5459 [35mhttp[39m: [35mGET /user/profile 200 92 - 62.538 ms[39m
+[35m[39m
+2023-06-15 14:55:43:5543 [35mhttp[39m: [35mPUT /user/update-profile 200 33 - 4913.042 ms[39m
+[35m[39m
+2023-06-15 14:55:52:5552 [35mhttp[39m: [35mGET /user/profile 200 954 - 98.613 ms[39m
+[35m[39m
+2023-06-15 14:59:50:5950 [35mhttp[39m: [35mPOST /kucing/add-kucing 201 83 - 818.510 ms[39m
+[35m[39m
+2023-06-15 15:01:01:11 [35mhttp[39m: [35mPOST /kucing/add-kucing 201 83 - 678.077 ms[39m
+[35m[39m
+2023-06-15 15:01:05:15 [35mhttp[39m: [35mGET /kucing/user 200 3963 - 84.486 ms[39m
+[35m[39m
+2023-06-15 15:14:14:1414 [35mhttp[39m: [35mGET /kucing/user/648ac4f6dc5021dfef6f0511 200 2001 - 70.470 ms[39m
+[35m[39m
+2023-06-15 15:14:26:1426 [35mhttp[39m: [35mPOST /kucing/add-kucing 201 83 - 848.987 ms[39m
+[35m[39m
+2023-06-15 15:14:31:1431 [35mhttp[39m: [35mGET /kucing/user 200 5922 - 110.858 ms[39m
+[35m[39m
+2023-06-15 15:14:39:1439 [35mhttp[39m: [35mDELETE /kucing/user/648ac862dc5021dfef6f0517 200 37 - 64.642 ms[39m
+[35m[39m
+2023-06-15 15:14:44:1444 [35mhttp[39m: [35mGET /kucing/user 200 3963 - 60.693 ms[39m
+[35m[39m
+2023-06-15 15:19:12:1912 [35mhttp[39m: [35mPOST /dokter/add-dokter 201 83 - 782.092 ms[39m
+[35m[39m
+2023-06-15 15:19:37:1937 [35mhttp[39m: [35mPOST /dokter/add-dokter 201 83 - 848.439 ms[39m
+[35m[39m
+2023-06-15 15:20:10:2010 [35mhttp[39m: [35mPOST /dokter/add-dokter 201 83 - 844.555 ms[39m
+[35m[39m
+2023-06-15 15:20:38:2038 [35mhttp[39m: [35mPOST /dokter/add-dokter 201 83 - 926.966 ms[39m
+[35m[39m
+2023-06-15 15:21:15:2115 [35mhttp[39m: [35mPOST /dokter/add-dokter 201 83 - 1115.229 ms[39m
+[35m[39m
+2023-06-15 15:22:12:2212 [35mhttp[39m: [35mPOST /dokter/add-dokter 201 83 - 1500.709 ms[39m
+[35m[39m
+2023-06-15 15:22:21:2221 [35mhttp[39m: [35mGET /dokter/list-dokter 200 6498 - 93.568 ms[39m
+[35m[39m
+2023-06-15 15:22:37:2237 [35mhttp[39m: [35mGET /dokter/detail-dokter/648aca33dc5021dfef6f0526 200 1085 - 55.157 ms[39m
+[35m[39m
+2023-06-15 15:23:11:2311 [35mhttp[39m: [35mPOST /prediction/ringworm 500 33 - 6.021 ms[39m
+[35m[39m
+2023-06-15 15:23:45:2345 [35mhttp[39m: [35mPOST /prediction/ringworm 200 875 - 21627.671 ms[39m
+[35m[39m
+2023-06-15 15:25:08:258 [35mhttp[39m: [35mPOST /artikel/add-artikel 500 69 - 5.241 ms[39m
+[35m[39m
+2023-06-15 15:41:53:4153 [35mhttp[39m: [35mPOST /artikel/add-artikel 500 33 - 1297.667 ms[39m
+[35m[39m
+2023-06-15 15:46:56:4656 [35mhttp[39m: [35mPOST /artikel/add-artikel 201 85 - 1544.767 ms[39m
+[35m[39m
+2023-06-15 15:51:31:5131 [35mhttp[39m: [35mPOST /artikel/add-artikel 201 85 - 1985.843 ms[39m
+[35m[39m
+2023-06-15 15:51:43:5143 [35mhttp[39m: [35mGET /artikel/detail-artikel/648ad113d57a9871fecc429a 404 35 - 80.499 ms[39m
+[35m[39m
+2023-06-15 15:52:39:5239 [35mhttp[39m: [35mGET /artikel/list-artikel 200 1447 - 79.622 ms[39m
+[35m[39m
+2023-06-15 15:52:48:5248 [35mhttp[39m: [35mGET /artikel/detail-artikel/648ad113d57a9871fecc429a 200 409 - 57.248 ms[39m
+[35m[39m
+2023-06-15 15:56:20:5620 [35mhttp[39m: [35mGET /dokter/list-dokter 200 6498 - 162.190 ms[39m
+[35m[39m
+2023-06-15 15:56:30:5630 [35mhttp[39m: [35mGET /dokter/detail-dokter/648ac980dc5021dfef6f051c 200 1077 - 63.973 ms[39m
+[35m[39m
+2023-06-15 15:58:45:5845 [35mhttp[39m: [35mPOST /artikel/add-artikel 201 85 - 1555.294 ms[39m
+[35m[39m
+2023-06-15 15:58:51:5851 [35mhttp[39m: [35mGET /artikel/list-artikel 200 1810 - 177.200 ms[39m
+[35m[39m
+2023-06-15 15:59:38:5938 [35mhttp[39m: [35mGET /artikel/list-artikel 200 1140 - 67.822 ms[39m
+[35m[39m
+2023-06-15 15:59:46:5946 [35mhttp[39m: [35mGET /artikel/detail-artikel/648ad000efe5689789bf7c9d 200 365 - 76.643 ms[39m
+[35m[39m
+2023-06-15 16:01:44:144 [35mhttp[39m: [35mPOST /checkup/check-doctor 201 2126 - 186.731 ms[39m
+[35m[39m
+2023-06-15 16:01:55:155 [35mhttp[39m: [35mGET /checkup/list-checkup 200 48 - 61.647 ms[39m
+[35m[39m
+2023-06-15 16:02:12:212 [35mhttp[39m: [35mGET /checkup/detail-checkup/648ad378bad57aaa80562366 200 2283 - 61.226 ms[39m
+[35m[39m
+2023-06-15 16:03:13:313 [35mhttp[39m: [35mPUT /checkup/doctor-checkup/648ad378bad57aaa80562366 200 37 - 116.493 ms[39m
+[35m[39m
+2023-06-15 16:03:18:318 [35mhttp[39m: [35mGET /checkup/list-checkup 200 3325 - 145.430 ms[39m
+[35m[39m
+2023-06-15 16:03:28:328 [35mhttp[39m: [35mGET /checkup/detail-checkup/648ad378bad57aaa80562366 200 3323 - 121.856 ms[39m
+[35m[39m
