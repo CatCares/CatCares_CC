@@ -47,10 +47,8 @@ router.post("/ringworm", upload.single("image"), async (req, res) => {
         const fileUploaded = await getFile(uploadedFile.file);
 
         return res.status(200).json({
-            data: {
-                image: fileUploaded,
-                isRingworm: newRingwormResult.isRingworm,
-            },
+            image: fileUploaded,
+            isRingworm: newRingwormResult.isRingworm,
         });
     } catch (error) {
         console.log(error)
